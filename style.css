@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    max-width: 80vw;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #333355;
+    background-color: #bbb;
+}
+
+.header {
+    margin: 1rem auto;
+}
+
+
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 1px;
+    margin: 0px;
+    font-size: 20px;
+  }
+     
+  
+.fa-github {
+    color: #333333;
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+    transform: scale(1.25);
+}
