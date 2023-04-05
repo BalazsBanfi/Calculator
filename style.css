@@ -78,6 +78,10 @@ html {
     font-size: 2.5rem;
 }
 
+#plus {
+    grid-column: 4 / 4;
+    grid-row: 4 / 6;
+}
 
 .buttons:hover {
     background-color: var(--numHover);
