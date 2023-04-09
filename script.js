@@ -34,7 +34,12 @@ function multiplication(a, b) {
 }
 
 function division(a, b) {
-    return a / b;
+    if (b === 0) {
+        alert("Do not divide by zero!")
+    }
+    else {
+        return a / b;
+    }
 }
 
 const buttons = document.querySelectorAll('.digits');
@@ -80,34 +85,38 @@ operation.forEach(button => {
                 case "plus":
                     partialScreen.textContent = `${first}+${second}`;
                     resultNum = addition(first, parseFloat(second));
+                    second = "";
                     break;
                 case "minus":
                     partialScreen.textContent = `${first}-${second}`;
                     resultNum = subtraction(first, parseFloat(second));
+                    second = "";
                     break;
                 case "mult":
                     partialScreen.textContent = `${first}*${second}`;
                     resultNum = multiplication(first, parseFloat(second));
+                    second = "";
                     break;
                 case "divide":
                     partialScreen.textContent = `${first}/${second}`;
                     resultNum = division(first, parseFloat(second));
+                    second = "";
                     break;
                 case "res":
                     resultNum = parseFloat(second);
-                    first = parseFloat(second);
                     partialScreen.textContent = `${first}${button.textContent}`;
-                    second = "";        
+                    first = "";
+                    resultNum = "";
                     break;                
                 default:
                     console.log("operations error");
             }
-
             
             first = resultNum;
-            second = "";
+            
         }
     operator = button.id;
-    resultScreen.textContent = resultNum;     
+    resultNum = Math.round(resultNum * 10000) / 10000;
+    resultScreen.textContent = resultNum;
     })
 });
