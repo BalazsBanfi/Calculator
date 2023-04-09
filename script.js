@@ -1,6 +1,6 @@
 let first = "";
 let second = "";
-let lastPushedDigit = false;
+let decimalPushed = false;
 let operator = "";
 let resultNum = "";
 let partialNum = "";
@@ -56,36 +56,49 @@ c.addEventListener('click', () => {
     second = "";
 });
 
+const decimal = document.querySelector('#decimal');
+decimal.addEventListener('click', () => {
+    if (!decimalPushed) {
+        decimalPushed = true;
+        second = second.concat(".");
+    }
+});
+
 
 const operation = document.querySelectorAll('.operation')
 operation.forEach(button => {
     button.addEventListener('click', () => {
-        
+        decimalPushed = false;
         if (!first) {
             operator = button.id;
-            first = parseInt(second);
+            first = parseFloat(second);
             partialScreen.textContent = `${first}${button.textContent}`;
             second = "";
         }
-        else {
-                       
+        else {                      
             switch (operator) {
                 case "plus":
                     partialScreen.textContent = `${first}+${second}`;
-                    resultNum = addition(first, parseInt(second));
+                    resultNum = addition(first, parseFloat(second));
                     break;
                 case "minus":
                     partialScreen.textContent = `${first}-${second}`;
-                    resultNum = subtraction(first, parseInt(second));
+                    resultNum = subtraction(first, parseFloat(second));
                     break;
                 case "mult":
                     partialScreen.textContent = `${first}*${second}`;
-                    resultNum = multiplication(first, parseInt(second));
+                    resultNum = multiplication(first, parseFloat(second));
                     break;
                 case "divide":
                     partialScreen.textContent = `${first}/${second}`;
-                    resultNum = division(first, parseInt(second));
+                    resultNum = division(first, parseFloat(second));
                     break;
+                case "res":
+                    resultNum = parseFloat(second);
+                    first = parseFloat(second);
+                    partialScreen.textContent = `${first}${button.textContent}`;
+                    second = "";        
+                    break;                
                 default:
                     console.log("operations error");
             }
