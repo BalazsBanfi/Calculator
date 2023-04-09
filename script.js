@@ -37,9 +37,6 @@ function division(a, b) {
     return a / b;
 }
 
-
-
-
 const buttons = document.querySelectorAll('.digits');
 buttons.forEach(button => {
     button.addEventListener('click', () => {
@@ -60,20 +57,44 @@ c.addEventListener('click', () => {
 });
 
 
-const plus = document.querySelector('#plus')
-plus.addEventListener('click', () => {
-    operator = "plus";
-    if (!first) {
-        first = parseInt(second);
-        partialScreen.textContent = `${first}+`;
-        second = ""; 
-    }
-    else {
-        partialScreen.textContent = `${first}+${second}`;
-        resultNum = addition(first, parseInt(second));
-        first = resultNum;
-        second = "";
-    }
-    resultScreen.textContent = resultNum;
-});
+const operation = document.querySelectorAll('.operation')
+operation.forEach(button => {
+    button.addEventListener('click', () => {
+        
+        if (!first) {
+            operator = button.id;
+            first = parseInt(second);
+            partialScreen.textContent = `${first}${button.textContent}`;
+            second = "";
+        }
+        else {
+                       
+            switch (operator) {
+                case "plus":
+                    partialScreen.textContent = `${first}+${second}`;
+                    resultNum = addition(first, parseInt(second));
+                    break;
+                case "minus":
+                    partialScreen.textContent = `${first}-${second}`;
+                    resultNum = subtraction(first, parseInt(second));
+                    break;
+                case "mult":
+                    partialScreen.textContent = `${first}*${second}`;
+                    resultNum = multiplication(first, parseInt(second));
+                    break;
+                case "divide":
+                    partialScreen.textContent = `${first}/${second}`;
+                    resultNum = division(first, parseInt(second));
+                    break;
+                default:
+                    console.log("operations error");
+            }
 
+            
+            first = resultNum;
+            second = "";
+        }
+    operator = button.id;
+    resultScreen.textContent = resultNum;     
+    })
+});
