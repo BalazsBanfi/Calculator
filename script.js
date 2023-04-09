@@ -60,8 +60,6 @@ c.addEventListener('click', () => {
 });
 
 
-
-
 const plus = document.querySelector('#plus')
 plus.addEventListener('click', () => {
     operator = "plus";
@@ -72,11 +70,10 @@ plus.addEventListener('click', () => {
     }
     else {
         partialScreen.textContent = `${first}+${second}`;
-        resultNum = first + parseInt(second);
+        resultNum = addition(first, parseInt(second));
         first = resultNum;
         second = "";
     }
-    console.log(resultNum);
     resultScreen.textContent = resultNum;
 });
 
